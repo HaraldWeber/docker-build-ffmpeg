@@ -9,7 +9,9 @@ RUN apt-get -y install autoconf \
  pkg-config \
  unzip \
  wget \
- nasm
+ nasm \
+ cmake \
+ mercurial
 
 VOLUME ["/ffmpeg"]
 # ADD build-ffmpeg.sh /build-ffmpeg.sh

@@ -35,6 +35,15 @@ PATH="/ffmpeg/bin:$PATH" make -j $CPU_COUNT
 make install
 make distclean
 
+cd /ffmpeg/sources
+hg clone https://bitbucket.org/multicoreware/x265
+cd x265/build/linux
+PATH="/ffmpeg/bin:$PATH" cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="/ffmpeg/build" -DENABLE_SHARED:bool=off ../../source
+PATH="/ffmpeg/bin:$PATH" make -j $CPU_COUNT
+make install
+make distclean
+cp /ffmpeg/build/bin/x265 /ffmpeg/bin/
+
 #cd /ffmpeg/sources
 #wget http://optimate.dl.sourceforge.net/project/lame/lame/3.99/lame-3.99.5.tar.gz
 #tar xzf lame-3.99.5.tar.gz
@@ -76,6 +85,7 @@ wget http://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2
 tar xjf ffmpeg-snapshot.tar.bz2
 cd /ffmpeg/sources/ffmpeg
 PATH="/ffmpeg/bin:$PATH" PKG_CONFIG_PATH="/ffmpeg/build/lib/pkgconfig" ./configure \
+  --pkg-config-flags="--static" \
   --prefix="/ffmpeg/build" \
   --extra-cflags="-I/ffmpeg/build/include" \
   --extra-ldflags="-L/ffmpeg/build/lib" \
@@ -87,6 +97,7 @@ PATH="/ffmpeg/bin:$PATH" PKG_CONFIG_PATH="/ffmpeg/build/lib/pkgconfig" ./configu
   --enable-version3 \
   --enable-libfdk-aac \
   --enable-libx264 \
+  --enable-libx265 \
   --disable-shared \
   --enable-static \
   --disable-debug \
