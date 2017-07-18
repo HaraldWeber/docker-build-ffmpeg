@@ -17,6 +17,14 @@ make install
 make distclean
 
 cd /ffmpeg/sources
+wget http://www.nasm.us/pub/nasm/releasebuilds/2.13.01/nasm-2.13.01.tar.xz
+tar xf nasm-2.13.01.tar.xz
+cd nasm-2.13.01/
+./configure --prefix="/ffmpeg/build" --bindir="/ffmpeg/bin"
+make
+make install
+
+cd /ffmpeg/sources
 wget -O fdk-aac.zip https://github.com/mstorsjo/fdk-aac/zipball/master
 unzip fdk-aac.zip
 cd /ffmpeg/sources/mstorsjo-fdk-aac*

@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM ubuntu:xenial
 MAINTAINER Harald Weber <harald@weber.tf>
 
 RUN apt-get update
@@ -9,7 +9,6 @@ RUN apt-get -y install autoconf \
  pkg-config \
  unzip \
  wget \
- nasm \
  cmake \
  mercurial
 
